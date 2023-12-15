@@ -1,0 +1,8 @@
+newmtl Verde
+Kd 0.145098 0.827451 0.4
+d 1
+
+newmtl Blanco
+Kd 1 1 1
+d 1
+

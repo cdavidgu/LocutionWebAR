@@ -1,0 +1,13 @@
+newmtl pantalla
+Kd 0 0 0
+d 1
+
+newmtl AR
+Kd 0.9529412 0.427451 0.3254902
+d 1
+
+newmtl Pantalla_Logo
+map_Kd Info AumentaR.png
+Kd 1 1 1
+d 1
+
