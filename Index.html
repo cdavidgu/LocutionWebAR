@@ -5,99 +5,120 @@
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-aframe.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.0.0/dist/aframe-extras.min.js"></script> -->
     <script>
         let play = true;
 
-        document.addEventListener("DOMContentLoaded", function () {
-            var audioSpeech = document.getElementById("AudioSpeech");
-            const model = document.getElementById('LocutorModel');
-            const mediaButton = document.querySelector("#media-button");
+
+        // document.addEventListener("DOMContentLoaded", function () {
+        // var audioSpeech = document.getElementById('AudioSpeech');
+        // const model = document.getElementById('LocutorModel');
+        // const mediaButton = document.querySelector("#media-button");
+
+        // audioSpeech.addEventListener("canplay", function () {
+        // alert("Can start playing video");
+        //audioSpeech.play();
+        //audioSpeech.volume = 0;
+        // });
 
 
-            mediaButton.addEventListener('click', function (evt) {
-                console.log("Button Clicked");
-                if (play) {
-                    audioSpeech.play();
-                    mediaButton.setAttribute("src", "#icon-stop");
-                    model.setAttribute('animation-mixer', {
-                        timeScale: 1,
-                    });
-                }
-                else {
-                    mediaButton.setAttribute("src", "#icon-play");
-                    audioSpeech.pause();
-                    model.setAttribute('animation-mixer', {
-                        timeScale: 0,
-                    });
-                }
-                play = !play;
-                //playButton.setAttribute("visible", false);
-                //stopButton.setAttribute("visible", true);
+        // mediaButton.addEventListener('click', function (evt) {
+        // console.log("Button Clicked");
+        // if (play) {
+        // audioSpeech.play();
+        // mediaButton.setAttribute("src", "#icon-stop");
+        // model.setAttribute('animation-mixer', {
+        // timeScale: 1,
+        // });
+        // }
+        // else {
+        // mediaButton.setAttribute("src", "#icon-play");
+        // audioSpeech.pause();
+        // model.setAttribute('animation-mixer', {
+        // timeScale: 0,
+        // });
+        // }
+        // play = !play;
+        // });
 
-            });
+        // });
 
-        });
+        // AFRAME.registerComponent('mytarget', {
+        // init: function () {
+        // const model = document.getElementById('LocutorModel');
+        // var audioSpeech = document.getElementById('AudioSpeech');
+        // const mediaButton = document.querySelector("#media-button");
 
-        AFRAME.registerComponent('mytarget', {
-            init: function () {
-                const model = document.getElementById('LocutorModel');
-                var audioSpeech = document.getElementById("AudioSpeech");
-                const mediaButton = document.querySelector("#media-button");
+        // model.addEventListener('animation-loop', function (e) {
+        // console.log("One Loop Finished");
+        // mediaButton.setAttribute("src", "#icon-play");
+        // play = true;
+        // audioSpeech.pause();
+        // audioSpeech.currentTime = 0;
+        // audioSpeech.volume = 1;
+        // model.setAttribute('animation-mixer', {
+        // timeScale: 0,
+        // })
+        // });
 
-                model.addEventListener('animation-loop', function (e) {
-                    console.log("One Loop Finished");
-                    mediaButton.setAttribute("src", "#icon-play");
-                    play = true;
-                    audioSpeech.pause();
-                    audioSpeech.currentTime = 0;
-                    model.setAttribute('animation-mixer', {
-                        timeScale: 0,
-                    })
-                });
+        // this.el.addEventListener('targetFound', event => {
+        // console.log("target found");
+        // play = true;
+        // mediaButton.setAttribute("src", "#icon-play");
+        // model.setAttribute('animation-mixer', {
+        // clip: "*",
+        // loop: "repeat",
+        // timeScale: 0,
+        // });
+        // });
 
-                this.el.addEventListener('targetFound', event => {
-                    console.log("target found");
-                    play = true;
-                    mediaButton.setAttribute("src", "#icon-play");
-                    model.setAttribute('animation-mixer', {
-                        clip: "*",
-                        loop: "repeat",
-                        timeScale: 0,
-                    });
-                });
-
-                this.el.addEventListener('targetLost', event => {
-                    console.log("target Lost");
-                    audioSpeech.pause();
-                    audioSpeech.currentTime = 0
-                    model.removeAttribute('animation-mixer');
-                });
-            }
-        });
+        // this.el.addEventListener('targetLost', event => {
+        // console.log("target Lost");
+        // audioSpeech.pause();
+        // audioSpeech.currentTime = 0
+        // model.removeAttribute('animation-mixer');
+        // });
+        // }
+        // });
     </script>
 </head>
 
 <body>
 
-    <audio id="AudioSpeech" preload="auto">
-        <source src="Assets/AudioSpeech.mp3" type="audio/mpeg">
-    </audio>
+    <!-- <audio id="AudioSpeech" crossorigin="anonymous" preload="auto"> -->
+    <!-- <source src="Assets/AudioSpeech.mp3" type="audio/mpeg"> -->
+    <!-- </audio> -->
 
-    <a-scene mindar-image="imageTargetSrc: /Assets/Targets.mind;" color-space="sRGB"
-        renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+    <!-- <a-scene stats mindar-image="imageTargetSrc: /Assets/Targets.mind;" vr-mode-ui="enabled: false" -->
+    <a-scene stats mindar-image="imageTargetSrc: /Assets/Targets.mind;" gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/versioned/decoders/1.5.6/;
+        basisTranscoderPath:https://cdn.jsdelivr.net/npm/three@0.154.0/examples/jsm/libs/basis/;"
         device-orientation-permission-ui="enabled: false">
-        <a-assets>
-            <a-asset-item id="Locutor" src="/Assets/LocutorModel.glb"></a-asset-item>
-            <img id="icon-play" src="/Assets/PlayIcon.png" />
+        <a-assets timeout="5000">
+
+            <!-- <a-asset-item id="SpeechVideo" src="/Assets/SpeechVideo.fbx" response-type="arraybuffer" -->
+            <!-- crossorigin="anonymous"></a-asset-item> -->
+            <a-asset-item id="Locutor" src="/Assets/LocutionCompressedTexture.glb"></a-asset-item>
+            <a-asset-item id="triceratops" src="https://cdn.aframe.io/examples/ar/models/triceratops/scene.gltf"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+            <img id="icon-play" src="/Assets/PlayMediaIcon.png" />
             <img id="icon-stop" src="/Assets/StopIcon.png" />
         </a-assets>
 
+        <!-- <a-sound id="AudioSpeech" src="#AudioFile"></a-sound> -->
         <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;"
             raycaster="far: ${customFields.libVersion}; objects: .clickable"></a-camera>
 
+        <!-- <a-box position="0 0 -5" rotation="0 45 0" color="#4CC3D9"></a-box> -->
+        <!-- <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere> -->
+
         <a-entity id="mytarget" mytarget mindar-image-target="targetIndex: 0">
-            <a-entity id="LocutorModel" gltf-model="#Locutor" position="0 0 0" rotation="90 0 0"
+            <a-entity visible="true" id="LocutorModel" gltf-model="#Locutor" position="0 0 0" rotation="90 90 90"
                 scale="0.5 0.5 0.5"></a-entity>
+            <!-- <a-entity id="TricModel" gltf-model="#triceratops" position="0 0 0" rotation="90 0 0" -->
+            <!-- scale="0.005 0.005 0.005" animation-mixer></a-entity> -->
+            <!-- <a-entity id="LocModel" fbx-model="#SpeechVideo" position="0 0 0" rotation="90 90 90" -->
+            <!-- scale="0.5 0.5 0.5"></a-entity> -->
+
             <a-image id="media-button" class="clickable" src="#icon-play" alpha-test="0.8" position="0 -0.5 0"
                 height="0.25" width="0.25"
                 animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"></a-image>
