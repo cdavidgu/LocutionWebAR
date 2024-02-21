@@ -80,6 +80,98 @@
         // });
         // }
         // });
+
+        AFRAME.registerComponent('locutor_model', {
+            init: function () {
+                this.counter = 0;
+                this.el.addEventListener('model-loaded', event => {
+                    console.log("Locutor model loaded ...");
+                    var objMesh = this.el.getObject3D('mesh');
+                    this.material = this.el.getObject3D('mesh').material
+                    console.log("THIS MATERIAL=  " + this.material);
+                    /*objMesh.traverse(node => {
+                       console.log("Name Mesh= " + node.name);
+                       //console.log("type node= " + node.type);
+                       var textureEl = node.material;
+                       if (!textureEl) return;
+                       console.log("material name= " + textureEl.map.name);
+                       this.counter += 1;
+
+                   });*/
+                    objMesh.traverse((node) => {
+                        //console.log("Name Node= " + node.name);
+                        if (node.isMesh && node.material.map) {
+                            //console.log("Name Mesh= " + node.name);
+                            this.counter += 1;
+                            //var texture = node.material.map;
+                            console.log('material= ' + node.material.name)
+                            console.log('Texture :', node.material);
+                            document.querySelector('a-scene').renderer.setTexture2D(node.material.map, 0);
+                        }
+                        if (node.isMesh && node.material.normalMap) {
+                            console.log('NORMAL MAP=' + node.material.normalMap.name);
+                            //var texture = node.material.normalMap;
+                            console.log('NORMAL MAP=' + node.material.normalMap);
+                            document.querySelector('a-scene').renderer.setTexture2D(node.material.normalMap, 0);
+
+                            this.counter += 1;
+                        }
+                        if (node.isMesh && node.material.envMap) {
+                            this.counter += 1;
+                            //var texture = node.material.envMap;
+                            console.log('ENV MAP =' + node.material.envMap);
+                            document.querySelector('a-scene').renderer.setTexture2D(node.material.envMap, 0);
+
+                        }
+                        if (node.isMesh && node.material.bumpMap) {
+                            this.counter += 1;
+                            // var texture = node.material.bumpMap;
+                            console.log('BUMP MAP =' + node.material.bumpMap);
+                            document.querySelector('a-scene').renderer.setTexture2D(node.material.bumpMap, 0);
+
+                        }
+                        if (node.isMesh && node.material.emissiveMap) {
+                            this.counter += 1;
+                            // var texture = node.material.emissiveMap;
+                            console.log('EMISSIVE MAP =' + node.material.emissiveMap);
+                            document.querySelector('a-scene').renderer.setTexture2D(node.material.emissiveMap, 0);
+
+                        }
+                        if (node.isMesh && node.material.lightMap) {
+                            this.counter += 1;
+                            // var texture = node.material.lightMap;
+                            console.log('LIGHT MAP =' + node.material.lightMap);
+                            document.querySelector('a-scene').renderer.setTexture2D(node.material.lightMap, 0);
+
+                        }
+                        if (node.isMesh && node.material.aoMap) {
+                            this.counter += 1;
+                            // var texture = node.material.aoMap;
+                            console.log('Ambien Oclussion MAP =' + node.material.aoMap);
+                            document.querySelector('a-scene').renderer.setTexture2D(node.material.aoMap, 0);
+
+                        }
+                        if (node.isMesh && node.material.metalnessMap) {
+                            this.counter += 1;
+                            // var texture = node.material.metalnessMap;
+                            console.log('METALNESS MAP =' + node.material.metalnessMap);
+                            document.querySelector('a-scene').renderer.setTexture2D(node.material.metalnessMap, 0);
+                        }
+                        if (node.isMesh && node.material.roughnessMap) {
+                            this.counter += 1;
+                            // var texture = node.material.roughnessMap;
+                            console.log('ROUGHNESS MAP  =' + node.material.roughnessMap);
+                            document.querySelector('a-scene').renderer.setTexture2D(node.material.roughnessMap, 0);
+                        }
+                    });
+                    console.log("TOTAL Materials= " + this.counter);
+                });
+                this.el.object3D.addEventListener('materialtextureloaded', event => {
+                    console.log("material model loaded ...");
+                });
+            }
+        });
+
     </script>
 </head>
 
@@ -112,8 +204,8 @@
         <!-- <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere> -->
 
         <a-entity id="mytarget" mytarget mindar-image-target="targetIndex: 0">
-            <a-entity visible="true" id="LocutorModel" gltf-model="#Locutor" position="0 0 0" rotation="90 90 90"
-                scale="0.5 0.5 0.5"></a-entity>
+            <a-entity locutor_model visible="true" id="LocutorModel" gltf-model="#Locutor" position="0 0 0"
+                rotation="90 90 90" scale="0.5 0.5 0.5"></a-entity>
             <!-- <a-entity id="TricModel" gltf-model="#triceratops" position="0 0 0" rotation="90 0 0" -->
             <!-- scale="0.005 0.005 0.005" animation-mixer></a-entity> -->
             <!-- <a-entity id="LocModel" fbx-model="#SpeechVideo" position="0 0 0" rotation="90 90 90" -->
