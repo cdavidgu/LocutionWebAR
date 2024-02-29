@@ -2,6 +2,13 @@
     --primary-color: #13131c;
     --secondary-color: #0f0f16;
     --accent-color: #1d6a86;
+    --primary-white-color: #e4e7ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -21,14 +28,14 @@ main {
 }
 
 h1 {
-    color: #e4e7ff;
+    color: var(--primary-white-color);
     font-size: 38px;
     /* z-index: 1000; */
-    /* text-align: center; */
+    text-align: center;
 }
 
 p {
-    color: #e4e7ff;
+    color: var(--primary-white-color);
     font-size: 22px;
     /* text-align: center; */
     padding: 10px 10px;
@@ -68,6 +75,8 @@ footer {
     /* flex: 1; */
     flex-direction: column;
     height: 100%;
+    margin-top: 5%;
+    overflow: auto;
     /* justify-content: space-between; */
 }
 
@@ -257,4 +266,105 @@ footer {
 .icon-footer-button i {
     font-size: 2.2rem;
     color: white;
+}
+
+.feed {
+    /* max-width: 600px; */
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 15px;
+    /* overflow: auto; */
+    /* Enable scrolling when content exceeds the height */
+}
+
+.post {
+    /* Existing styles for post container */
+    /* Add any additional styling as needed */
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+    background-color: var(--primary-color);
+}
+
+.user-info {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* height: 33%; */
+    width: 100%;
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.user-info span {
+    color: var(--primary-white-color);
+}
+
+.user-info i {
+    width: 40px;
+    height: 40px;
+    border-radius: 10%;
+    margin-right: 2px;
+    font-size: 2.2rem;
+    color: var(--primary-white-color);
+}
+
+.post-image {
+    flex: 2;
+    max-width: 100%;
+    min-height: 50vh;
+    height: fit-content;
+    /* Set maximum height to 50% of the viewport height */
+    width: auto;
+    /* Maintain the aspect ratio */
+    /* height: 40vh; */
+    /* Maintain the aspect ratio */
+    /* display: block; */
+    /* Ensure the image is treated as a block element */
+    padding-top: 5px;
+    /* margin: auto; */
+}
+
+
+.post-interactions {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    /* margin-top: 10px; */
+    font-size: 14px;
+    width: 100%;
+}
+
+.post-interactions i {
+    padding-top: 4px;
+    font-size: 1.8rem;
+    color: var(--accent-color);
+}
+
+.likes {
+    font-weight: bold;
+    padding-left: 4px;
+    color: var(--accent-color);
+}
+
+.post-content {
+    margin-top: 0px 0px;
+    font-size: 12px;
+    line-height: 1.2;
+    height: 3vh;
+    width: 100%;
+    text-align: left;
+    padding-top: 2px;
+    font-weight: bold;
+    color: var(--primary-white-color);
 }
